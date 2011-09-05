@@ -4,9 +4,17 @@
 
 #include <map>
 #include <SDL.h>
-#include "PacTile.h"
 
-typedef std::map<const char*, PacTile*> PacTileMap;
+class PacTile;
+
+class PacTilePosition
+{
+public:
+	int x;
+	int y;
+};
+
+typedef std::map<PacTilePosition, PacTile*> PacTileMap;
 
 class PacLevel
 {
@@ -17,6 +25,7 @@ public:
 	void Initialise();
 	void Uninitialise();
 
+	bool AddTile( int a_iX, int a_iY, PacTile* a_pTile);
 	void DebugDemoTiles();
 
 	void Render( SDL_Surface* a_pScreen );

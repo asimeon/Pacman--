@@ -33,7 +33,7 @@ public:
 	void Update(float a_fDeltatime);
 	void Render( PacObject* a_pObject );
 
-	void DebugOutputMessage( std::string a_ssString );
+	static void DebugOutputMessage( std::string a_ssString );
 
 	inline SDL_Surface* GetSurface() const { return m_pScreen; }
 

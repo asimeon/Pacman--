@@ -72,12 +72,14 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\PacCore.cpp" />
+    <ClCompile Include="source\PacLevel.cpp" />
     <ClCompile Include="source\PacMan.cpp" />
     <ClCompile Include="source\PacObject.cpp" />
     <ClCompile Include="source\PacTile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\PacCore.h" />
+    <ClInclude Include="source\PacLevel.h" />
     <ClInclude Include="source\PacMan.h" />
     <ClInclude Include="source\PacObject.h" />
     <ClInclude Include="source\PacTile.h" />
