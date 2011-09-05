@@ -1,0 +1,20 @@
+# Git Ignore File
+
+# Ignore Visual Studio 2010 specific stuff
+*.[oa]
+/ipch
+*.ipch
+/Debug
+/Release
+*.sdf
+*.tlog
+*obj
+*.log
+*.pdb
+*.manifest
+*.lastbuildstate
+*.exe
+*.ilk
+*.user
+*.opensdf
+*.suo
