@@ -3,15 +3,16 @@
 #include <SDL_image.h>
 #include "PacObject.h"
 
-PacCore::PacCore()
+PacCore::PacCore(float a_fWidth, float a_fHeight, bool a_bFullscreen)
 	: m_bInitialised(false)
 {
 	m_pScreen = NULL;
+	Initialise(a_fWidth, a_fHeight, a_bFullscreen);
 }
 
 PacCore::~PacCore()
 {
-
+	Uninitialise();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ void PacCore::Initialise( float a_fWidth, float a_fHeight, bool a_bFullscreen )
 	if( iError )
 	{
 		DebugOutputMessage("ERROR: Could not initialise SDL.");
+		return;
 	}
 
 	int iFlags = SDL_HWSURFACE | SDL_DOUBLEBUF;
@@ -44,12 +46,21 @@ void PacCore::Initialise( float a_fWidth, float a_fHeight, bool a_bFullscreen )
 	}
 
 	m_pScreen = SDL_SetVideoMode((int)a_fWidth, (int)a_fHeight, 32, iFlags);
+	if(!m_pScreen)
+	{
+		DebugOutputMessage("ERROR: Could not set video mode.");
+		return;
+	}
 
-	// load images
+	m_iWindowWidth = (int)a_fWidth;
+	m_iWindowHeight = (int)a_fHeight;
+
+	// load image init
 	iError = IMG_Init(IMG_INIT_PNG);
 	if( iError )
 	{
 		DebugOutputMessage("ERROR: Could not initialise SDL image.");
+		return;
 	}
 
 	m_bInitialised = true;
@@ -117,7 +128,7 @@ void PacCore::Update( float a_fDeltatime )
 // \author	Andrew
 // \date	9/5/2011
 //
-// \param [in,out]	a_pSurface	If non-null, screen surface.
+// \param [in]	a_pSurface	If non-null, screen surface.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PacCore::Render( PacObject* a_pObject )
@@ -155,4 +166,23 @@ void PacCore::DebugOutputMessage( std::string a_ssString )
 #ifdef _DEBUG
 	printf("%s\n", a_ssString.c_str());
 #endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// \fn	void PacCore::AddObject( PacObject* a_pObject )
+//
+// \brief	Adds an object to the object list for render and update.
+//
+// \author	Andrew
+// \date	9/5/2011
+//
+// \param [in]	a_pObject	If non-null, a pointer to an object.
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void PacCore::AddObject( PacObject* a_pObject )
+{
+	if(!a_pObject)
+		return;
+
+	m_vObjects.push_back(a_pObject);
 }

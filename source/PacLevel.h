@@ -2,19 +2,12 @@
 #ifndef PACLEVEL_H
 #define PACLEVEL_H
 
-#include <map>
+#include <vector>
 #include <SDL.h>
 
 class PacTile;
 
-class PacTilePosition
-{
-public:
-	int x;
-	int y;
-};
-
-typedef std::map<PacTilePosition, PacTile*> PacTileMap;
+typedef std::vector<PacTile*> PacTileVector;
 
 class PacLevel
 {
@@ -31,7 +24,7 @@ public:
 	void Render( SDL_Surface* a_pScreen );
 
 protected:
-	PacTileMap m_tiles;
+	PacTileVector m_tiles;
 
 	bool m_bLoaded;
 };

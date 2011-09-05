@@ -19,6 +19,7 @@ public:
 	virtual void Render(SDL_Surface* a_pScreen) = 0;
 
 	inline Vector3f GetPosition() const { return m_kPosition; }
+	inline void SetPosition(Vector3f a_kPosition) { m_kPosition = a_kPosition; }
 
 	inline int GetSpriteWidth() const { return m_iSurfaceWidth; }
 	inline int GetSpriteHeight() const { return m_iSurfaceHeight; }

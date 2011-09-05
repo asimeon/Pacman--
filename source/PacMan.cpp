@@ -24,6 +24,9 @@ PacMan::~PacMan()
 void PacMan::Initialise()
 {
 	m_kVelocity = Vector3f::ZERO();
+	m_kVelocity.x += 30;
+
+	LoadSpriteFromFile("data/pacman.png", 32, 32);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +56,7 @@ void PacMan::Uninitialise()
 
 void PacMan::Update( float a_fDeltatime )
 {
-	
+	m_kPosition += m_kVelocity * a_fDeltatime;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,5 +72,4 @@ void PacMan::Update( float a_fDeltatime )
 
 void PacMan::Render( SDL_Surface* a_pScreen )
 {
-
 }
