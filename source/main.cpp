@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Timer.h"
 #include "PacCore.h"
+#include "PacInput.h"
 #include "PacMan.h"
 #include "PacLevel.h"
 
@@ -20,6 +21,8 @@ int SDL_main(int argc, char* argv[])
 	PacLevel kLevel;
 	kLevel.DebugDemoTiles();
 
+	PacInput kInput(&kEvent);
+
 	Uint32 uiClear = SDL_MapRGB(kCore.GetSurface()->format, 13,13,255);
 	SDL_Rect kClearRect;
 	kClearRect.x = 0;
@@ -29,6 +32,8 @@ int SDL_main(int argc, char* argv[])
 
 	while(!bExit)
 	{
+
+
 		SDL_FillRect(kCore.GetSurface(), &kClearRect, uiClear);
 
 		float fDeltaTime = (float)kTimer.GetDeltaTime();
